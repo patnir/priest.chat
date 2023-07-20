@@ -10,7 +10,7 @@ const convertChatListToChatGPTList = (chat: Chat[]): ChatGPT[] => {
   const result: ChatGPT[] = [];
   for (const c of chat) {
     result.push({
-      role: c.type === "AI" ? "assistant" : "user",
+      role: c.type === "PRIEST" ? "assistant" : "user",
       content: c.message,
     });
   }
@@ -40,7 +40,7 @@ export const getCompletion = async (chat: Chat[]): Promise<Chat[]> => {
 
   const lastChat: Chat = {
     message: completion.data.choices[0].message?.content || "",
-    type: "AI",
+    type: "PRIEST",
   };
 
   console.log(lastChat);

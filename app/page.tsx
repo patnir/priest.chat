@@ -73,17 +73,17 @@ export default function Home() {
       }
     );
 
-    return <div>{chatHistoryComponent}</div>;
+    return <div className="py-10">{chatHistoryComponent}</div>;
   };
 
   return (
     <main className="flex min-h-screen flex-col sm:p-24 p-4">
       <div>Priest.chat</div>
-      <div className="w-full min-h-screen">
+      <div className="w-full flex-grow">
         <div className="mt-4 w-full">
           <div className="flex flex-row w-full "></div>
         </div>
-        <div>{chatHistoryComponent()}</div>
+        <div className="">{chatHistoryComponent()}</div>
       </div>
       <div className="flex flex-row sticky bottom-20 w-full mb-10">
         {chatBar()}

@@ -21,10 +21,9 @@ export default function Home() {
       return;
     } catch (e) {
       console.log("error", e);
-      alert("Error connecting to server" + JSON.stringify(e));
     }
 
-    var chat: Chat = { message: "Somethign went wrong", type: "PRIEST" };
+    var chat: Chat = { message: "Something went wrong", type: "PRIEST" };
     var ch: Chat[] = [...history, chat];
     // set chat history after 400 ms delay
     setTimeout(() => {

@@ -1,12 +1,8 @@
 "use client";
 
 import { SubmitButton } from "@/components/SubmitButton";
+import { Chat } from "@/components/types";
 import { useState } from "react";
-
-type Chat = {
-  message: string;
-  type: "AI" | "USER";
-};
 
 export default function Home() {
   const [chatHistory, setChatHistory] = useState<Chat[]>([]);
@@ -14,7 +10,21 @@ export default function Home() {
 
   const fetchChatResponse = async (history: Chat[]) => {
     // will have an API call here
-    var chat: Chat = { message: "Hello", type: "AI" };
+    try {
+      var result = await fetch("/api", {
+        method: "POST",
+        body: JSON.stringify({ history }),
+      });
+
+      const newHistory: Chat[] = await result.json();
+      setChatHistory(newHistory);
+      return;
+    } catch (e) {
+      console.log("error", e);
+      alert("Error connecting to server" + JSON.stringify(e));
+    }
+
+    var chat: Chat = { message: "Somethign went wrong", type: "AI" };
     var ch: Chat[] = [...history, chat];
     // set chat history after 400 ms delay
     setTimeout(() => {
@@ -27,9 +37,9 @@ export default function Home() {
     var ch: Chat[] = [...chatHistory, chat];
     setChatHistory(ch);
     setChatMessage("");
-
+    console.log("fetchChatResponse");
     fetchChatResponse(ch);
-    console.log("chatHistory", chatHistory);
+    console.log("chatHistory", ch);
   };
 
   const chatBar = (): JSX.Element => {

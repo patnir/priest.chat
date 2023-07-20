@@ -77,7 +77,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col p-24">
+    <main className="flex min-h-screen flex-col sm:p-24 p-4">
       <div>Priest.chat</div>
       <div className="w-full min-h-screen">
         <div className="mt-4 w-full">
